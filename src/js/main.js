@@ -42,6 +42,7 @@ async function genCards(chapter) {
       for (const word of c.words){
         const card = document.createElement('div');
         card.className = 'card';
+        
         const card_en = document.createElement('div');
         card_en.className = 'card_en';
         const card__img_en = document.createElement('img');
@@ -52,6 +53,11 @@ async function genCards(chapter) {
         card_en.appendChild(card__img_en);
         card_en.appendChild(card__name_en);
         card.appendChild(card_en)
+        card_en.addEventListener('click', () => {
+          const sound = new Audio(word.sound);
+          sound.play();
+        })
+
         const card_ru = document.createElement('div');
         card_ru.classList.add('card_ru');
         card_ru.classList.add('card_hidden')
