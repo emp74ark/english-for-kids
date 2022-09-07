@@ -1,0 +1,58 @@
+nav {
+  grid-area: nav;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.burger__wrapper {
+  position: relative;
+  left: 1rem;
+  top: 1rem;
+  width: 3rem;
+  height: 3rem;
+  z-index: 100;
+}
+.burger__wrapper_active {
+  transition: all .5s ease-in;
+  transform: rotate(90deg);
+  left: 240px;
+}
+@mixin burger__line {
+  display: inline-block;
+  background: $background-dark;
+  border-radius: .2rem;
+  width: 100%;
+  height: .5rem;
+  content: '';
+  position: absolute
+}
+.burger__lines {
+  @include burger__line;
+  top: calc(50% - .1rem);
+}
+.burger__lines::before {
+  @include burger__line;
+  top: -1.1rem;
+}
+.burger__lines::after {
+  @include burger__line;
+  top: 1.1rem;
+}
+.nav__list {
+  position: fixed;
+  box-sizing: border-box;
+  height: 100%;
+  width: 300px;
+  background: $background-light;
+  top: 0;
+  left: -300px;
+  margin: 0;
+  padding: 100px 1rem 1rem 1rem;
+  li {
+    list-style: none;
+    margin: 1rem 0;
+    }
+}
+.nav__list_active {
+  transition: all .3s ease-in;
+  left: 0;
+}

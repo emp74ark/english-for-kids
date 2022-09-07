@@ -1,0 +1,19 @@
+footer {
+  grid-area: footer;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 1.2rem;
+  background: $background-dark;
+  cursor: pointer;
+}
+.footer__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: $font-color-light;
+  img {
+    height: 1.2rem;
+    filter: invert(1);
+  }
+}

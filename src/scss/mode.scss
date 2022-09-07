@@ -1,0 +1,51 @@
+.mode {
+  grid-area: mode;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 2rem;
+  font-size: 1.5rem;
+  position: relative;
+  input {
+    visibility: hidden;
+  }
+  label {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    background: pink;
+    border-radius: 50%;
+    z-index: 2;
+    position: absolute;
+  }
+}
+.mode_hidden {
+  visibility: hidden;
+  width: 0;
+}
+.mode__back {
+  background: greenyellow;
+  position: absolute;
+  width: 8rem;
+  height: 2.4rem;
+  border-radius: 2rem;
+}
+.mode__back_play {
+  background: yellow;
+}
+.mode__name {
+  z-index: 1;
+  position: absolute;
+  right: 3.5rem;
+}
+.mode__name_play {
+  z-index: 1;
+  position: absolute;
+  right: 1.4rem;
+}
+.mode__handle {
+  right: .2rem;
+}
+.mode__handle_play {
+  right: 5.8rem;
+}

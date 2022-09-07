@@ -1,0 +1,27 @@
+main {
+  grid-area: main;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20rem;
+  height: 20rem;
+  flex: 0 0 auto;
+  border: .1rem solid $border-dark;
+  border-radius: 2rem;
+  padding: 1rem;
+  gap: .5rem;
+  img {
+    width: 80%;
+    border-radius: 2rem;
+  }
+  span {
+    font-size: 1.5rem;
+  }
+}

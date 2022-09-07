@@ -1,0 +1,91 @@
+[
+  {
+    "chapter": "Fairytales",
+    "img": "./assets/images/fairytales.jpg",
+    "words": [
+      {
+        "en": "Dragon",
+        "ru": "Дракон",
+        "img": "./assets/images/dragon.jpg",
+        "sound": "./assets/sounds/dragon.mp3"
+      },
+      {
+        "en": "Knight",
+        "ru": "Рыцарь",
+        "img": "./assets/images/knight.jpg",
+        "sound": "./assets/sounds/knight.mp3"
+      },
+      {
+        "en": "King",
+        "ru": "Король",
+        "img": "./assets/images/king.jpg",
+        "sound": "./assets/sounds/king.mp3"
+      },
+      {
+        "en": "Mermaid",
+        "ru": "Русалка",
+        "img": "./assets/images/mermaid.jpg",
+        "sound": "./assets/sounds/mermaid.mp3"
+      },
+      {
+        "en": "Princess",
+        "ru": "Принцесса",
+        "img": "./assets/images/princess.jpg",
+        "sound": "./assets/sounds/princess.mp3"
+      },
+      {
+        "en": "Wizard",
+        "ru": "Волшебник",
+        "img": "./assets/images/wizard.jpg",
+        "sound": "./assets/sounds/wizard.mp3"
+      },
+      {
+        "en": "Fairy",
+        "ru": "Фея",
+        "img": "./assets/images/fairy.jpg",
+        "sound": "./assets/sounds/fairy.mp3"
+      },
+      {
+        "en": "Castle",
+        "ru": "Замок",
+        "img": "./assets/images/castle.jpg",
+        "sound": "./assets/sounds/castle.mp3"
+      }
+    ]
+  },
+  {
+    "chapter": "Animals",
+    "img": "./assets/images/animals.jpg",
+    "words": []
+  },
+  {
+    "chapter": "Food",
+    "img": "./assets/images/food.jpg",
+    "words": []
+  },
+  {
+    "chapter": "Emotions",
+    "img": "./assets/images/emotions.jpg",
+    "words": []
+  },
+  {
+    "chapter": "Body",
+    "img": "./assets/images/body.jpg",
+    "words": []
+  },
+  {
+    "chapter": "Closes",
+    "img": "./assets/images/clothes.jpg",
+    "words": []
+  },
+  {
+    "chapter": "Activities",
+    "img": "./assets/images/activities.jpg",
+    "words": []
+  },
+  {
+    "chapter": "Colors",
+    "img": "./assets/images/colors.jpg",
+    "words": []
+  }
+]

@@ -1,4 +1,20 @@
 body {
-  background: $background-dark;
-  color: $font-color-light;
+  display: grid;
+  grid-template-columns: 300px auto 300px;
+  grid-template-rows: 4rem auto 3rem;
+  grid-template-areas: 
+    'nav header mode'
+    'main main main'
+    'footer footer footer';
+  background: $background-light;
+  color: $font-color-dark;
+  font-size: 10px;
+  font-family: fantasy;
+  margin: 0;
+}
+a,
+a:hover,
+a:hover {
+  color: $font-color-dark;
+  text-decoration: none;
 }
