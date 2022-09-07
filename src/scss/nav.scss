@@ -10,15 +10,16 @@ nav {
   width: 3rem;
   height: 3rem;
   z-index: 100;
+  transition: all .3s ease;
 }
 .burger__wrapper_active {
-  transition: all .2s ease-in;
-  transform: rotate(90deg);
+  transform: rotate(450deg);
   left: 240px;
 }
 @mixin burger__line {
   display: inline-block;
   background: $background-dark;
+  box-shadow: .1rem .1rem .2rem $shadow-dark;
   border-radius: .5rem;
   width: 100%;
   height: .5rem;
@@ -42,17 +43,22 @@ nav {
   box-sizing: border-box;
   height: 100%;
   width: 300px;
-  background: $background-light;
+  background: $background-middle;
   top: 0;
   left: -300px;
   margin: 0;
-  padding: 100px 1rem 1rem 1rem;
+  padding: 100px 1rem 1rem 2rem;
+  z-index: 1;
   li {
     list-style: none;
     margin: 1rem 0;
+    &:hover {
+      color: $font-color-accent;
     }
+  }
 }
 .nav__list_active {
-  transition: all .3s ease-in;
+  transition: all .3s ease;
   left: 0;
+  box-shadow: .1rem .1rem .5rem $shadow-dark;
 }

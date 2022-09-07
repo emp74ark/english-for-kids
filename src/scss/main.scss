@@ -14,14 +14,16 @@ main {
   justify-content: space-between;
   width: 20rem;
   height: 22rem;
-  border: .1rem solid $border-dark;
+  background: $background-light;
+  border: .1rem solid $border-light;
   border-radius: 2rem;
+  box-shadow: .2rem .2rem .3rem $shadow-dark;
   padding: .5rem;
   transition: all .3s;
   transform-style: preserve-3d;
-  /* &:hover {
-    transform: rotateY(180deg);
-  } */
+  &:hover {
+    box-shadow: .2rem .2rem 1rem $shadow-dark;
+  }
   img {
     width: 18rem;
     height: 18rem;
