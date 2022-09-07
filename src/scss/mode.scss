@@ -24,6 +24,7 @@
   width: 0;
 }
 .mode__back {
+  transition: all 1s ease-in;
   background: greenyellow;
   position: absolute;
   width: 8rem;
@@ -44,6 +45,7 @@
   right: 1.4rem;
 }
 .mode__handle {
+  transition: all 1s ease-in;
   right: .2rem;
 }
 .mode__handle_play {

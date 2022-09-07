@@ -12,14 +12,14 @@ nav {
   z-index: 100;
 }
 .burger__wrapper_active {
-  transition: all .5s ease-in;
+  transition: all .2s ease-in;
   transform: rotate(90deg);
   left: 240px;
 }
 @mixin burger__line {
   display: inline-block;
   background: $background-dark;
-  border-radius: .2rem;
+  border-radius: .5rem;
   width: 100%;
   height: .5rem;
   content: '';
