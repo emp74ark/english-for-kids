@@ -45,14 +45,19 @@ async function genCards(chapter) {
         
         const card_en = document.createElement('div');
         card_en.className = 'card_en';
-        const card__img_en = document.createElement('img');
-        card__img_en.src = word.img;
-        const card__name_en = document.createElement('span');
-        card__name_en.className = 'card__name';
-        card__name_en.textContent = word.en;
-        card_en.appendChild(card__img_en);
-        card_en.appendChild(card__name_en);
+        let card__img = document.createElement('img');
+        card__img.src = word.img;
+        let card__name = document.createElement('span');
+        card__name.className = 'card__name';
+        card__name.textContent = word.en;
+        card_en.appendChild(card__img);
+        card_en.appendChild(card__name);
+        let button_rotate = document.createElement('img');
+        button_rotate.src = '../assets/icons/rotate.png';
+        button_rotate.className = 'button__rotate';
+        card_en.appendChild(button_rotate);
         card.appendChild(card_en)
+
         card_en.addEventListener('click', () => {
           const sound = new Audio(word.sound);
           sound.play();
@@ -60,26 +65,26 @@ async function genCards(chapter) {
 
         const card_ru = document.createElement('div');
         card_ru.classList.add('card_ru');
-        card_ru.classList.add('card_hidden')
-        const card__img_ru = document.createElement('img');
-        card__img_ru.src = word.img;
-        const card__name_ru = document.createElement('span');
-        card__name_ru.className = 'card__name';
-        card__name_ru.textContent = word.ru;
-        card_ru.appendChild(card__img_ru);
-        card_ru.appendChild(card__name_ru);
-        card.appendChild(card_en)
-        card.appendChild(card_ru)
-        
-        const button_rotate = document.createElement('img');
+        card__img = document.createElement('img');
+        card__img.src = word.img;
+        card__name = document.createElement('span');
+        card__name.className = 'card__name';
+        card__name.textContent = word.ru;
+        card_ru.appendChild(card__img);
+        card_ru.appendChild(card__name);
+        button_rotate = document.createElement('img');
         button_rotate.src = '../assets/icons/rotate.png';
         button_rotate.className = 'button__rotate';
-        card.appendChild(button_rotate);
-        button_rotate.addEventListener('click', () => {
-          card_en.classList.toggle('card_hidden');
-          card_ru.classList.toggle('card_hidden');
-        })
+        card_ru.appendChild(button_rotate);
         
+        card.appendChild(card_en)
+        card.appendChild(card_ru)
+
+        card.addEventListener('click', (e) => {
+          if (e.target.className === 'button__rotate'){
+            card.classList.toggle('card__rotate')
+          }
+        })
 
         fragment.appendChild(card);
       }

@@ -7,46 +7,51 @@ main {
   padding: 1rem;
 }
 .card {
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   width: 20rem;
   height: 22rem;
-  flex: 0 0 auto;
   border: .1rem solid $border-dark;
   border-radius: 2rem;
-  padding: 1rem 0;
+  padding: .5rem;
+  transition: all .3s;
+  transform-style: preserve-3d;
+  /* &:hover {
+    transform: rotateY(180deg);
+  } */
   img {
     width: 18rem;
     height: 18rem;
     border-radius: 1.5rem;
-    margin-bottom: .5rem;
   }
 }
 .card__name {
   font-size: 1.5rem;
+  margin: .5rem 0 0;
 }
 .card__counter {
   font-size: 1rem;
 }
-.card_hidden {
-  visibility: hidden;
-  width: 0;
-  height: 0;
-}
-.card_ru,
-.card_en {
+.card_en,
+.card_ru {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  position: absolute;
+  top: .5rem;
+  backface-visibility: hidden;
+}
+.card_ru {
+  transform: rotateY(-180deg);
 }
 .card .button__rotate {
-  width: 1.4rem;
   align-self: flex-end;
-  margin-right: 1rem;
-  &:hover {
-    transition: all .3s ease-in;
-    transform: rotate(180deg);
-  }
+  width: 1.4rem;
+  height: 1.4rem;
+}
+.card__rotate {
+  transform: rotateY(180deg);
 }
