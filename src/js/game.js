@@ -1,6 +1,9 @@
 import { getWords } from './sources';
 import { applyChapters } from './main';
 
+const successList = new Map();
+const failList = new Map();
+let currentFailCounter = 0;
 
 async function startGame(chapter){
   const words = await getWords();
@@ -18,8 +21,6 @@ async function startGame(chapter){
   
   const initialList = currentWords.slice();
   const passedList = [];
-  const successList = [];
-  const failList = [];
 
   for (const word of currentWords){
     const card = document.createElement('div');
@@ -31,7 +32,12 @@ async function startGame(chapter){
     fragment.appendChild(card);
     card.addEventListener('click', (e) => {
       if (e.target.closest('div').dataset.title === passedList[0].en){
-        successList.push(passedList[0]);
+        if (successList.has(passedList[0].en)){
+          const counter = successList.get(passedList[0].en) + 1;
+          successList.set(passedList[0].en, counter)
+        } else {
+          successList.set(passedList[0].en, 1)
+        }
         card.classList.add('success');
         card.classList.remove('fail');
         const audio__success = new Audio('../assets/sounds/success.mp3')
@@ -40,7 +46,13 @@ async function startGame(chapter){
         button__game_repeat.classList.toggle('button__game_hidden');
         randomSound();
       } else {
-        failList.push(passedList[0]);
+        currentFailCounter++;
+        if (failList.has(passedList[0].en)){
+          const counter = failList.get(passedList[0].en) + 1;
+          failList.set(passedList[0].en, counter);
+        } else {
+          failList.set(passedList[0].en, 1)
+        }
         card.classList.add('fail');
         card.classList.remove('success');
         const audio__fail = new Audio('../assets/sounds/fail.mp3')
@@ -83,9 +95,10 @@ async function startGame(chapter){
       const greeting = document.createElement('div');
       greeting.className = 'greeting';
       const greeting__success = document.createElement('span');
-      greeting__success.textContent = `Success: ${successList.length} of 8`;
+      let currentSuccessCounter = 8 - currentFailCounter;
+      greeting__success.textContent = `Right answers: ${currentSuccessCounter}`;
       const greeting__fail = document.createElement('span');
-      greeting__fail.textContent = `Fail: ${failList.length} of 8`;
+      greeting__fail.textContent = `Wrong answers: ${currentFailCounter}`;
       const greeting__close = document.createElement('span');
       greeting__close.className = 'greeting__close'
       greeting__close.textContent = 'x';
@@ -109,4 +122,4 @@ async function startGame(chapter){
   main.appendChild(fragment);
 }
 
-export { startGame }
+export { startGame, successList, failList }

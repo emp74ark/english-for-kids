@@ -1,0 +1,11 @@
+.score__table {
+  width: 90%;
+  font-size: 1.4rem;
+  text-align: left;
+  th {
+    color: $font-color-accent;
+  }
+  tr:nth-child(even){
+    background: $background-light;
+  }
+}
