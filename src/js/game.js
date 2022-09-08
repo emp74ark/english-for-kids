@@ -1,9 +1,20 @@
 import { getWords } from './sources';
 import { applyChapters } from './main';
 
-const successList = new Map();
-const failList = new Map();
-let currentFailCounter = 0;
+const successList = !localStorage.success 
+  ? new Map()
+  : new Map(JSON.parse(localStorage.success));
+const failList = !localStorage.fail 
+  ? new Map()
+  : new Map(JSON.parse(localStorage.fail));
+
+  let currentFailCounter = 0;
+
+function updatedSavedData(){
+  localStorage.clear();
+  localStorage.setItem('success', JSON.stringify(Array.from(successList.entries())));
+  localStorage.setItem('fail', JSON.stringify(Array.from(failList.entries())));
+}
 
 async function startGame(chapter){
   const words = await getWords();
@@ -110,6 +121,7 @@ async function startGame(chapter){
       greeting.appendChild(greeting__success);
       greeting.appendChild(greeting__fail);
       main.appendChild(greeting);
+      updatedSavedData();
     }
   }
 
