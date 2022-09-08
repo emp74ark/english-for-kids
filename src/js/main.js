@@ -1,6 +1,7 @@
 import { getWords } from './sources';
 
 const main = document.createElement('main');
+let currentChapter;
 
 async function genChapters(){
   const fragment = new DocumentFragment()
@@ -20,7 +21,8 @@ async function genChapters(){
     card.appendChild(card__name);
     card.appendChild(card__counter);
     card.addEventListener('click', () => {
-      genCards(chapter.chapter)
+      currentChapter = chapter.chapter;
+      genCards(currentChapter);
     })
     fragment.appendChild(card);
   }
@@ -94,4 +96,4 @@ async function genCards(chapter) {
   main.appendChild(fragment);
 }
 
-export { applyChapters, genCards }
+export { applyChapters, genCards, currentChapter }

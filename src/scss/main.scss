@@ -11,7 +11,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 20rem;
   height: 22rem;
   background: $background-light;
@@ -19,7 +19,7 @@ main {
   border-radius: 2rem;
   box-shadow: .2rem .2rem .3rem $shadow-dark;
   padding: .5rem;
-  transition: all .3s;
+  transition: all .5s;
   transform-style: preserve-3d;
   &:hover {
     box-shadow: .2rem .2rem 1rem $shadow-dark;

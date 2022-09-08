@@ -1,0 +1,37 @@
+.button__game {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@mixin button__game {
+  
+}
+.button__game_active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12rem;
+  height: 3rem;
+  font-size: 2rem;
+  border-radius: 2rem;
+  background: $background-danger;
+  box-shadow: .1rem .1rem .1rem $shadow-dark;
+  transition: transform .2s;
+  transition: opacity 1s;
+  &:hover {
+    transform: translate(-.1rem, -.1rem);
+    box-shadow: .1rem .1rem .3rem $shadow-dark;
+  }
+}
+.button__game_hidden {
+  visibility: hidden;
+  opacity: 0;
+  width: 0;
+}
+.success {
+  border: .2rem solid $border-success;
+}
+.fail {
+  border: .2rem solid $border-fail;
+}
