@@ -1,5 +1,5 @@
 async function getWords(){
-  const response = await fetch('../assets/words.json');
+  const response = await fetch('./assets/words.json');
   const words = await response.json()
   return words;
 }

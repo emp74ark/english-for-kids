@@ -62,7 +62,7 @@ async function genCards(chapter) {
         card_en.appendChild(card__img);
         card_en.appendChild(card__name);
         let button_rotate = document.createElement('img');
-        button_rotate.src = '../assets/icons/rotate.png';
+        button_rotate.src = './assets/icons/rotate.png';
         button_rotate.className = 'button__rotate';
         card_en.appendChild(button_rotate);
         card.appendChild(card_en)
@@ -77,7 +77,7 @@ async function genCards(chapter) {
         card_ru.appendChild(card__img);
         card_ru.appendChild(card__name);
         button_rotate = document.createElement('img');
-        button_rotate.src = '../assets/icons/rotate.png';
+        button_rotate.src = './assets/icons/rotate.png';
         button_rotate.className = 'button__rotate';
         card_ru.appendChild(button_rotate);
         

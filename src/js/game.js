@@ -51,7 +51,7 @@ async function startGame(chapter){
         }
         card.classList.add('success');
         card.classList.remove('fail');
-        const audio__success = new Audio('../assets/sounds/success.mp3')
+        const audio__success = new Audio('./assets/sounds/success.mp3')
         audio__success.play();
         button__game_start.classList.toggle('button__game_hidden');
         button__game_repeat.classList.toggle('button__game_hidden');
@@ -66,7 +66,7 @@ async function startGame(chapter){
         }
         card.classList.add('fail');
         card.classList.remove('success');
-        const audio__fail = new Audio('../assets/sounds/fail.mp3')
+        const audio__fail = new Audio('./assets/sounds/fail.mp3')
         audio__fail.play();
       }
     })
