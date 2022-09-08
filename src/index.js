@@ -6,6 +6,6 @@ import { applyChapters } from './js/main';
 import { applyFooter } from './js/footer';
 applyHeader();
 applyNav();
-applyModeHandler();
 applyChapters();
+applyModeHandler();
 applyFooter();

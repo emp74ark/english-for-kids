@@ -84,6 +84,7 @@ async function genScoreTable(){
     }
   }
   main.innerHTML = '';
+  main.dataset.title = 'Score';
   main.appendChild(fragment);
 }
 

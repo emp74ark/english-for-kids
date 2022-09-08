@@ -1,5 +1,8 @@
-import { startGame } from './game';
-import { currentChapter } from './main';
+import { startGame } from "./game";
+import { currentChapter, genCards } from "./main";
+
+let currentMode = false;
+const nonGame = ['Main', 'Score']
 
 function applyModeHandler(){
   const mode = document.createElement('div');
@@ -29,15 +32,24 @@ function applyModeHandler(){
   mode.appendChild(mode__back);
 
   mode__label.addEventListener('click', () => {
+    const main = document.querySelector('main');
     mode__back.classList.toggle('mode__back_play');
     mode__label.classList.toggle('mode__handle_play');
     mode__train.classList.toggle('mode__name_hidden');
     mode__play.classList.toggle('mode__name_hidden');
     mode__input.checked = mode__input.checked ? false : true;
-    startGame(currentChapter);
+    if (currentMode !== mode__input.checked){
+      currentMode = mode__input.checked;
+      if(!nonGame.includes(main.dataset.title) && currentMode){
+        startGame(currentChapter);
+      }
+      if(!nonGame.includes(main.dataset.title) && !currentMode){
+        genCards(currentChapter);
+      }
+    }
   })
 
   document.body.appendChild(mode)
 }
 
-export { applyModeHandler }
+export { applyModeHandler, currentMode }

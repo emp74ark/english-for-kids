@@ -1,4 +1,6 @@
 import { getWords } from './sources';
+import { currentMode } from './mode';
+import { startGame } from './game';
 
 const main = document.createElement('main');
 let currentChapter;
@@ -16,13 +18,17 @@ async function genChapters(){
     card__name.textContent = chapter.chapter;
     const card__counter = document.createElement('span');
     card__counter.className = 'card__counter';
-    card__counter.textContent = chapter.words.length
+    card__counter.textContent = `${chapter.words.length} words`
     card.appendChild(card__img);
     card.appendChild(card__name);
     card.appendChild(card__counter);
     card.addEventListener('click', () => {
       currentChapter = chapter.chapter;
-      genCards(currentChapter);
+      if (currentMode) {
+        startGame(currentChapter);
+      } else {
+        genCards(currentChapter);
+      }
     })
     fragment.appendChild(card);
   }
@@ -33,6 +39,7 @@ async function applyChapters(){
   main.innerHTML = '';
   const chapters = await genChapters()
   main.appendChild(chapters)
+  main.dataset.title = 'Main'
   document.body.appendChild(main)
 }
 
@@ -60,11 +67,6 @@ async function genCards(chapter) {
         card_en.appendChild(button_rotate);
         card.appendChild(card_en)
 
-        card.addEventListener('click', () => {
-          const sound = new Audio(word.sound);
-          sound.play();
-        })
-
         const card_ru = document.createElement('div');
         card_ru.classList.add('card_ru');
         card__img = document.createElement('img');
@@ -85,6 +87,9 @@ async function genCards(chapter) {
         card.addEventListener('click', (e) => {
           if (e.target.className === 'button__rotate'){
             card.classList.toggle('card__rotate')
+          } else {
+            const sound = new Audio(word.sound);
+            sound.play();
           }
         })
 
@@ -93,6 +98,7 @@ async function genCards(chapter) {
     }
   }
   main.innerHTML = '';
+  main.dataset.title = chapter;
   main.appendChild(fragment);
 }
 

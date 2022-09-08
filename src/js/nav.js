@@ -1,6 +1,8 @@
 import { getWords } from './sources';
 import { applyChapters, genCards } from './main';
 import { genScoreTable } from './score';
+import { currentMode } from './mode';
+import { startGame } from './game';
 
 const nav = document.createElement('nav');
 
@@ -46,7 +48,11 @@ async function genNav(){
         genScoreTable();
         break;
       default:
-        genCards(tag);
+        if(currentMode){
+          startGame(tag)
+        } else {
+          genCards(tag);
+        }
         burgerToggle();
     }
   })
