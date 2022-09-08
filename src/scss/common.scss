@@ -18,3 +18,21 @@ a:hover {
   color: $font-color-dark;
   text-decoration: none;
 }
+@mixin button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12rem;
+  height: 3rem;
+  font-size: 2rem;
+  font-family: fantasy;
+  border: 0;
+  border-radius: 2rem;
+  box-shadow: .1rem .1rem .1rem $shadow-dark;
+  transition: transform .2s;
+  transition: opacity 1s;
+  &:hover {
+    transform: translate(-.1rem, -.1rem);
+    box-shadow: .1rem .1rem .3rem $shadow-dark;
+  }
+}

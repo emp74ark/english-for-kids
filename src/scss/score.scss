@@ -9,3 +9,13 @@
     background: $background-light;
   }
 }
+.buttons__wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button__reset {
+  @include button;
+  background: $background-dark;
+}

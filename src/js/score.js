@@ -20,10 +20,27 @@ function getRate(word){
   return `${rate}`;
 }
 
+function resetScore(){
+  successList.clear();
+  failList.clear();
+  localStorage.clear();
+  genScoreTable();
+}
+
 async function genScoreTable(){
   const main = document.querySelector('main');
   const fragment = new DocumentFragment()
   const words = await getWords();
+  
+  const buttons__wrapper = document.createElement('div');
+  buttons__wrapper.className = 'buttons__wrapper';
+  const button__reset = document.createElement('button');
+  button__reset.textContent = 'Reset'
+  button__reset.className = 'button__reset';
+  button__reset.addEventListener('click', () => { resetScore() });
+  buttons__wrapper.appendChild(button__reset);
+  fragment.appendChild(buttons__wrapper);
+  
   const table = document.createElement('table');
   table.className = 'score__table';
   const table__header = document.createElement('tr');
