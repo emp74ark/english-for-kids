@@ -1,4 +1,5 @@
 import { getWords } from './sources';
+import { applyChapters } from './main';
 
 
 async function startGame(chapter){
@@ -72,11 +73,31 @@ async function startGame(chapter){
   fragment.appendChild(button__game);
 
   function randomSound(){
-    const random = Math.floor(Math.random() * initialList.length);
-    const sound = new Audio(initialList[random].sound)
-    sound.play();
-    passedList.unshift(initialList[random]);
-    initialList.splice(random, 1)
+    if (passedList.length < 8) {
+      const random = Math.floor(Math.random() * initialList.length);
+      const sound = new Audio(initialList[random].sound)
+      sound.play();
+      passedList.unshift(initialList[random]);
+      initialList.splice(random, 1)
+    } else {
+      const greeting = document.createElement('div');
+      greeting.className = 'greeting';
+      const greeting__success = document.createElement('span');
+      greeting__success.textContent = `Success: ${successList.length} of 8`;
+      const greeting__fail = document.createElement('span');
+      greeting__fail.textContent = `Fail: ${failList.length} of 8`;
+      const greeting__close = document.createElement('span');
+      greeting__close.className = 'greeting__close'
+      greeting__close.textContent = 'x';
+      greeting__close.addEventListener('click', () => {
+        main.removeChild(greeting);
+        applyChapters();
+      })
+      greeting.appendChild(greeting__close);
+      greeting.appendChild(greeting__success);
+      greeting.appendChild(greeting__fail);
+      main.appendChild(greeting);
+    }
   }
 
   function repeatSound(){

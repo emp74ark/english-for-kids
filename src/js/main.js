@@ -60,7 +60,7 @@ async function genCards(chapter) {
         card_en.appendChild(button_rotate);
         card.appendChild(card_en)
 
-        card_en.addEventListener('click', () => {
+        card.addEventListener('click', () => {
           const sound = new Audio(word.sound);
           sound.play();
         })
