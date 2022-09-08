@@ -36,3 +36,15 @@ a:hover {
     box-shadow: .1rem .1rem .3rem $shadow-dark;
   }
 }
+@media (max-width: 900px) {
+  body {
+    grid-template-columns: 300px auto;
+    grid-template-rows: 4rem 3rem minmax(calc(100vh - 7rem), auto) 3rem;
+    grid-template-areas: 
+      'nav mode'
+      'header header'
+      'main main'
+      'footer footer';
+    font-size: 8px;
+  }
+}
