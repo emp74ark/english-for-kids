@@ -8,12 +8,23 @@ const failList = !localStorage.fail
   ? new Map()
   : new Map(JSON.parse(localStorage.fail));
 
-  let currentFailCounter = 0;
+const currentSuccessList = [];
+let currentFailCounter = 0;
 
 function updatedSavedData(){
   localStorage.clear();
   localStorage.setItem('success', JSON.stringify(Array.from(successList.entries())));
   localStorage.setItem('fail', JSON.stringify(Array.from(failList.entries())));
+}
+
+function updateScore(result, word){
+  const table = result === 'success' ? successList : failList;
+  if (table.has(word)){
+    const counter = table.get(word) + 1;
+    table.set(word, counter)
+  } else {
+    table.set(word, 1)
+  }
 }
 
 async function startGame(chapter){
@@ -45,30 +56,26 @@ async function startGame(chapter){
     card.appendChild(card__img);
     fragment.appendChild(card);
     card.addEventListener('click', (e) => {
-      if (e.target.closest('div').dataset.title === passedList[0].en){
-        if (successList.has(passedList[0].en)){
-          const counter = successList.get(passedList[0].en) + 1;
-          successList.set(passedList[0].en, counter)
-        } else {
-          successList.set(passedList[0].en, 1)
+      const cardWord = e.target.closest('div').dataset.title;
+      const puzzleWord = passedList[0]['en'];
+      if (cardWord === puzzleWord){
+        updateScore('success', puzzleWord);
+        if (!currentSuccessList.includes(cardWord)){
+          currentSuccessList.push(cardWord);
+          const audio__success = new Audio('./assets/sounds/success.mp3')
+          audio__success.play();
+          card.classList.add('success');
+          card.classList.remove('fail');
         }
-        card.classList.add('success');
-        card.classList.remove('fail');
-        const audio__success = new Audio('./assets/sounds/success.mp3')
-        audio__success.play();
         randomSound();
       } else {
         currentFailCounter++;
-        if (failList.has(passedList[0].en)){
-          const counter = failList.get(passedList[0].en) + 1;
-          failList.set(passedList[0].en, counter);
-        } else {
-          failList.set(passedList[0].en, 1)
+        updateScore('fail', puzzleWord);
+        if (!currentSuccessList.includes(cardWord)){
+          const audio__fail = new Audio('./assets/sounds/fail.mp3')
+          audio__fail.play();
+          card.classList.add('fail');
         }
-        card.classList.add('fail');
-        card.classList.remove('success');
-        const audio__fail = new Audio('./assets/sounds/fail.mp3')
-        audio__fail.play();
       }
     })
   }
