@@ -45,7 +45,7 @@ async function genNav(){
         break;
       case 'Score':
         burgerToggle();
-        genScoreTable();
+        genScoreTable('en', 'asc');
         break;
       default:
         if(currentMode){

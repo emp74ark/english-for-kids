@@ -2,8 +2,13 @@
   width: 90%;
   font-size: 1.4rem;
   text-align: left;
+  td {
+    padding: .5rem;
+  }
   th {
+    padding: .5rem;
     color: $font-color-accent;
+    cursor: pointer;
   }
   tr:nth-child(even){
     background: $background-light;
