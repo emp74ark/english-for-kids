@@ -56,25 +56,27 @@ async function startGame(chapter){
     card.appendChild(card__img);
     fragment.appendChild(card);
     card.addEventListener('click', (e) => {
-      const cardWord = e.target.closest('div').dataset.title;
-      const puzzleWord = passedList[0]['en'];
-      if (cardWord === puzzleWord){
-        updateScore('success', puzzleWord);
-        if (!currentSuccessList.includes(cardWord)){
-          currentSuccessList.push(cardWord);
-          const audio__success = new Audio('./assets/sounds/success.mp3')
-          audio__success.play();
-          card.classList.add('success');
-          card.classList.remove('fail');
-        }
-        randomSound();
-      } else {
-        currentFailCounter++;
-        updateScore('fail', puzzleWord);
-        if (!currentSuccessList.includes(cardWord)){
-          const audio__fail = new Audio('./assets/sounds/fail.mp3')
-          audio__fail.play();
-          card.classList.add('fail');
+      if (passedList.length > 0){
+        const cardWord = e.target.closest('div').dataset.title;
+        const puzzleWord = passedList[0]['en'];
+        if (cardWord === puzzleWord){
+          updateScore('success', puzzleWord);
+          if (!currentSuccessList.includes(cardWord)){
+            currentSuccessList.push(cardWord);
+            const audio__success = new Audio('./assets/sounds/success.mp3')
+            audio__success.play();
+            card.classList.add('success');
+            card.classList.remove('fail');
+          }
+          randomSound();
+        } else {
+          currentFailCounter++;
+          updateScore('fail', puzzleWord);
+          if (!currentSuccessList.includes(cardWord)){
+            const audio__fail = new Audio('./assets/sounds/fail.mp3')
+            audio__fail.play();
+            card.classList.add('fail');
+          }
         }
       }
     })

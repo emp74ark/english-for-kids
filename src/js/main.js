@@ -86,6 +86,10 @@ async function genCards(chapter) {
         button_rotate.src = './assets/icons/rotate.png';
         button_rotate.className = 'button__rotate';
         card_ru.appendChild(button_rotate);
+
+        card_ru.addEventListener('mouseout', () => {
+          card.classList.toggle('card__rotate');
+        })
         
         card.appendChild(card_en)
         card.appendChild(card_ru)
