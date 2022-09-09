@@ -27,6 +27,9 @@ async function startGame(chapter){
   for (const c of words){
     if(c.chapter === chapter){
       currentWords = c.words;
+      const title = document.createElement('h2');
+      title.textContent = c.chapter;
+      fragment.appendChild(title);
     }
   }
   

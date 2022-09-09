@@ -6,6 +6,12 @@ main {
   gap: 1.5rem;
   padding: 1rem;
 }
+h2 {
+  width: 100%;
+  text-align: center;
+  font-size: 1.6rem;
+  color: $font-color-middle;
+}
 .card {
   flex: 0 0 auto;
   display: flex;

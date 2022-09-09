@@ -8,6 +8,9 @@ let currentChapter;
 async function genChapters(){
   const fragment = new DocumentFragment()
   const words = await getWords();
+  const title = document.createElement('h2');
+  title.textContent = 'Main';
+  fragment.appendChild(title);
   for (const chapter of words){
     const card = document.createElement('div');
     card.className = 'card';
@@ -48,6 +51,9 @@ async function genCards(chapter) {
   const words = await getWords();
   for (const c of words){
     if(c.chapter === chapter){
+      const title = document.createElement('h2');
+      title.textContent = c.chapter;
+      fragment.appendChild(title);
       for (const word of c.words){
         const card = document.createElement('div');
         card.className = 'card';
