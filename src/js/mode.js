@@ -31,7 +31,7 @@ function applyModeHandler(){
   mode.appendChild(mode__play);
   mode.appendChild(mode__back);
 
-  mode__label.addEventListener('click', () => {
+  mode.addEventListener('click', () => {
     const main = document.querySelector('main');
     mode__back.classList.toggle('mode__back_play');
     mode__label.classList.toggle('mode__handle_play');

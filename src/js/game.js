@@ -113,6 +113,7 @@ async function startGame(chapter){
     } else {
       const greeting = document.createElement('div');
       greeting.className = 'greeting';
+      const greeting__img = document.createElement('img');
       const greeting__success = document.createElement('span');
       let currentSuccessCounter = 8 - currentFailCounter;
       greeting__success.textContent = `Right answers: ${currentSuccessCounter}`;
@@ -120,22 +121,32 @@ async function startGame(chapter){
       greeting__fail.textContent = `Wrong answers: ${currentFailCounter}`;
       const greeting__close = document.createElement('span');
       greeting__close.className = 'greeting__close'
-      greeting__close.textContent = 'x';
+      greeting__close.innerHTML = '&times;';
       greeting__close.addEventListener('click', () => {
         main.removeChild(greeting);
         applyChapters();
       })
       greeting.appendChild(greeting__close);
+      greeting.appendChild(greeting__img);
       greeting.appendChild(greeting__success);
       greeting.appendChild(greeting__fail);
-      main.appendChild(greeting);
-      const winn = new Audio('./assets/sounds/win.mp3');
+      
+      const win = new Audio('./assets/sounds/win.mp3');
       const loss = new Audio('./assets/sounds/loss.mp3');
+      
       if (currentFailCounter !== 0){
+        greeting__img.src = './assets/images/sad.jpg'
         loss.play();
       } else {
-        winn.play();
+        greeting__img.src = './assets/images/smile.jpg'
+        win.play();
       }
+      const cards = document.querySelectorAll('.card');
+      for (const card of cards){
+        card.classList.add('card_hidden');
+      }
+      
+      main.appendChild(greeting);
       updatedSavedData();
       currentSuccessList = [];
     }
