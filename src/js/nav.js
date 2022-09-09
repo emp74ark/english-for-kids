@@ -11,6 +11,7 @@ async function genNav(){
 
   const burger__wrapper =  document.createElement('div');
   burger__wrapper.className = 'burger__wrapper';
+  burger__wrapper.id = 'burger';
   const burger__lines = document.createElement('span');
   burger__lines.className = 'burger__lines';
   burger__wrapper.appendChild(burger__lines);
@@ -18,8 +19,17 @@ async function genNav(){
     burger__wrapper.classList.toggle('burger__wrapper_active');
     nav__list.classList.toggle('nav__list_active')
   }
-  burger__wrapper.addEventListener('click', () => {
+  function burgerClose(){
+    burger__wrapper.classList.remove('burger__wrapper_active');
+    nav__list.classList.remove('nav__list_active')
+  }
+  burger__wrapper.addEventListener('click', (e) => {
     burgerToggle();
+  })
+  document.body.addEventListener('click', (e) => {
+    if (e.target.id !== 'burger'){
+      burgerClose();
+    }
   })
   
   const words = await getWords();

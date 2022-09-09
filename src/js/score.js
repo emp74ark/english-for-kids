@@ -127,11 +127,7 @@ function resetScore(){
   genScoreTable();
 }
 
-async function genScoreTable(field, direction){
-  const main = document.querySelector('main');
-  const fragment = new DocumentFragment()
-  const words = await genScoreList(field, direction);
-  
+function addButtons(){
   const buttons__wrapper = document.createElement('div');
   buttons__wrapper.className = 'buttons__wrapper';
   const button__reset = document.createElement('button');
@@ -139,26 +135,24 @@ async function genScoreTable(field, direction){
   button__reset.className = 'button__reset';
   button__reset.addEventListener('click', () => { resetScore() });
   buttons__wrapper.appendChild(button__reset);
-  fragment.appendChild(buttons__wrapper);
+  return buttons__wrapper;
+}
+
+async function genScoreTable(field, direction){
+  const main = document.querySelector('main');
+  const fragment = new DocumentFragment()
+  const words = await genScoreList(field, direction);
   
   const table = document.createElement('table');
   table.className = 'score__table';
+  
   const table__header = document.createElement('tr');
-  let cell__header = document.createElement('th');
-  cell__header.textContent = 'English';
-  table__header.appendChild(cell__header);
-  cell__header = document.createElement('th');
-  cell__header.textContent = 'Russian';
-  table__header.appendChild(cell__header);
-  cell__header = document.createElement('th');
-  cell__header.textContent = 'Success';
-  table__header.appendChild(cell__header);
-  cell__header = document.createElement('th');
-  cell__header.textContent = 'Fail';
-  table__header.appendChild(cell__header);
-  cell__header = document.createElement('th');
-  cell__header.textContent = 'Success score';
-  table__header.appendChild(cell__header);
+  const table__columns = ['English', 'Russian', 'Success', 'Fail', 'Success score'];
+  for (const cell__header of table__columns){
+    const cell__data = document.createElement('th');
+    cell__data.textContent = cell__header;
+    table__header.appendChild(cell__data);
+  }
   table__header.addEventListener('click', (e) => {
     switch(e.target.closest('th').textContent) {
       case 'English':
@@ -223,6 +217,7 @@ async function genScoreTable(field, direction){
   }
   main.innerHTML = '';
   main.dataset.title = 'Score';
+  main.appendChild(addButtons());
   main.appendChild(fragment);
 }
 

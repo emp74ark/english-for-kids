@@ -3,6 +3,7 @@ import { currentMode } from './mode';
 import { startGame } from './game';
 
 const main = document.createElement('main');
+
 let currentChapter;
 
 async function genChapters(){
@@ -57,7 +58,7 @@ async function genCards(chapter) {
       for (const word of c.words){
         const card = document.createElement('div');
         card.className = 'card';
-        
+
         const card_en = document.createElement('div');
         card_en.className = 'card_en';
         let card__img = document.createElement('img');

@@ -147,6 +147,7 @@ async function startGame(chapter){
       for (const card of cards){
         card.classList.add('card_hidden');
       }
+      button__game.classList.add('card_hidden');
       
       main.appendChild(greeting);
       updatedSavedData();

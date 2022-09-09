@@ -14,7 +14,7 @@ function applyFooter(){
   document.body.appendChild(footer);
 
   footer.addEventListener('click', (e) => {
-    console.log(e.target)
+    window.open('https://learn.epam.com/start')
   })
 }
 
