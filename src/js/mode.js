@@ -38,12 +38,13 @@ function applyModeHandler(){
     mode__train.classList.toggle('mode__name_hidden');
     mode__play.classList.toggle('mode__name_hidden');
     mode__input.checked = mode__input.checked ? false : true;
+    console.log(currentMode)
     if (currentMode !== mode__input.checked){
       currentMode = mode__input.checked;
-      if(!nonGame.includes(main.dataset.title) && currentMode){
+      if(!nonGame.includes(main.dataset.title) && currentMode === true){
         startGame(currentChapter);
       }
-      if(!nonGame.includes(main.dataset.title) && !currentMode){
+      if(!nonGame.includes(main.dataset.title) && currentMode === false){
         genCards(currentChapter);
       }
     }
