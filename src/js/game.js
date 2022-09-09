@@ -8,7 +8,7 @@ const failList = !localStorage.fail
   ? new Map()
   : new Map(JSON.parse(localStorage.fail));
 
-const currentSuccessList = [];
+let currentSuccessList = [];
 let currentFailCounter = 0;
 
 function updatedSavedData(){
@@ -129,7 +129,15 @@ async function startGame(chapter){
       greeting.appendChild(greeting__success);
       greeting.appendChild(greeting__fail);
       main.appendChild(greeting);
+      const winn = new Audio('./assets/sounds/win.mp3');
+      const loss = new Audio('./assets/sounds/loss.mp3');
+      if (currentFailCounter !== 0){
+        loss.play();
+      } else {
+        winn.play();
+      }
       updatedSavedData();
+      currentSuccessList = [];
     }
   }
 
