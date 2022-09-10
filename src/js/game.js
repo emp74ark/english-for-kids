@@ -1,4 +1,4 @@
-import { applyChapters, startTrainData } from './main';
+import { applyChapters, cardsData } from './main';
 
 const successList = !localStorage.success 
   ? new Map()
@@ -29,7 +29,7 @@ function updateScore(result, word){
 async function startGame(chapter){
   const fragment = new DocumentFragment();
   const main = document.querySelector('main');
-  const words = await startTrainData(chapter);
+  const words = await cardsData(chapter);
   
   const title = document.createElement('h2');
   title.textContent = chapter;
@@ -46,6 +46,7 @@ async function startGame(chapter){
     card.dataset.title = word.en
     card.appendChild(card__img);
     fragment.appendChild(card);
+    
     card.addEventListener('click', (e) => {
       if (passedList.length > 0){
         const cardWord = e.target.closest('div').dataset.title;

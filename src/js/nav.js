@@ -19,18 +19,19 @@ async function genNav(){
     burger__wrapper.classList.toggle('burger__wrapper_active');
     nav__list.classList.toggle('nav__list_active')
   }
-  /* function burgerClose(){
+  function burgerClose(){
     burger__wrapper.classList.remove('burger__wrapper_active');
     nav__list.classList.remove('nav__list_active')
-  } */
-  burger__wrapper.addEventListener('click', () => {
+  }
+  burger__wrapper.addEventListener('click', (e) => {
+    e.stopPropagation();
     burgerToggle();
   })
-  /* document.body.addEventListener('click', (e) => {
+  document.body.addEventListener('click', (e) => {
     if (e.target.id !== 'burger'){
-      console.log(e.target)
+      burgerClose();
     }
-  }) */
+  })
   
   const words = await getWords();
   const nav__list = document.createElement('ul');

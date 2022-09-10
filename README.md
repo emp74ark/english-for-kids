@@ -7,6 +7,3 @@
 ## Sources
 - Sounds: https://soundoftext.com/
 - Images: https://stock.adobe.com/
-
-## TODO
-- sort by success score

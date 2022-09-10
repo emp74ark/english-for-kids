@@ -49,7 +49,7 @@ async function applyChapters(){
   document.body.appendChild(main)
 }
 
-async function startTrainData(mode) {
+async function cardsData(mode) {
   const words = mode !== 'Repeat' 
     ? await getWords()
     : await genScoreList('fail', 'asc');
@@ -68,7 +68,7 @@ async function startTrainData(mode) {
 
 async function startTrain(chapter) {
   const fragment = new DocumentFragment()
-  const words = await startTrainData(chapter);
+  const words = await cardsData(chapter);
 
   const title = document.createElement('h2');
   title.textContent = chapter;
@@ -135,4 +135,4 @@ function setCurrentChapter(tag = 'Main'){
   currentChapter = tag;
 }
 
-export { applyChapters, startTrain, currentChapter, startTrainData, setCurrentChapter }
+export { applyChapters, startTrain, currentChapter, cardsData, setCurrentChapter }
