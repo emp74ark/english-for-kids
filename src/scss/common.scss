@@ -11,6 +11,7 @@ body {
   font-size: 10px;
   font-family: 'Balsamiq Sans';
   margin: 0;
+  position: relative;
 }
 a,
 a:hover,
@@ -38,7 +39,7 @@ a:hover {
 }
 @media (max-width: 900px) {
   body {
-    grid-template-columns: 300px auto;
+    grid-template-columns: 100px auto;
     grid-template-rows: 4rem 3rem minmax(calc(100vh - 7rem), auto) 3rem;
     grid-template-areas: 
       'nav mode'
@@ -46,5 +47,10 @@ a:hover {
       'main main'
       'footer footer';
     font-size: 8px;
+  }
+}
+@media (max-width: 400px){
+  body {
+    font-size: 4px;
   }
 }
