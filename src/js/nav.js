@@ -1,5 +1,5 @@
 import { getWords } from './sources';
-import { applyChapters, genCards } from './main';
+import { applyChapters, setCurrentChapter, startTrain } from './main';
 import { genScoreTable } from './score';
 import { currentMode } from './mode';
 import { startGame } from './game';
@@ -19,18 +19,18 @@ async function genNav(){
     burger__wrapper.classList.toggle('burger__wrapper_active');
     nav__list.classList.toggle('nav__list_active')
   }
-  function burgerClose(){
+  /* function burgerClose(){
     burger__wrapper.classList.remove('burger__wrapper_active');
     nav__list.classList.remove('nav__list_active')
-  }
-  burger__wrapper.addEventListener('click', (e) => {
+  } */
+  burger__wrapper.addEventListener('click', () => {
     burgerToggle();
   })
-  document.body.addEventListener('click', (e) => {
+  /* document.body.addEventListener('click', (e) => {
     if (e.target.id !== 'burger'){
-      burgerClose();
+      console.log(e.target)
     }
-  })
+  }) */
   
   const words = await getWords();
   const nav__list = document.createElement('ul');
@@ -60,8 +60,10 @@ async function genNav(){
       default:
         if(currentMode){
           startGame(tag)
+          setCurrentChapter(tag)
         } else {
-          genCards(tag);
+          startTrain(tag);
+          setCurrentChapter(tag)
         }
         burgerToggle();
     }

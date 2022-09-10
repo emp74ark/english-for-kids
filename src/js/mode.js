@@ -1,5 +1,5 @@
 import { startGame } from "./game";
-import { currentChapter, genCards } from "./main";
+import { currentChapter, setCurrentChapter, startTrain } from "./main";
 
 let currentMode = false;
 const nonGame = ['Main', 'Score']
@@ -20,8 +20,7 @@ function applyModeHandler(){
   mode__train.className = 'mode__name';
   const mode__play = document.createElement('span');
   mode__play.textContent = 'Play';
-  mode__play.className = 'mode__name';
-  mode__play.classList.add('mode__name_hidden');
+  mode__play.className = 'mode__name mode__name_hidden';
   const mode__back = document.createElement('span');
   mode__back.className = 'mode__back';
   
@@ -32,24 +31,34 @@ function applyModeHandler(){
   mode.appendChild(mode__back);
 
   mode.addEventListener('click', () => {
-    const main = document.querySelector('main');
     mode__back.classList.toggle('mode__back_play');
     mode__label.classList.toggle('mode__handle_play');
     mode__train.classList.toggle('mode__name_hidden');
     mode__play.classList.toggle('mode__name_hidden');
-    mode__input.checked = mode__input.checked ? false : true;
-    if (currentMode !== mode__input.checked){
-      currentMode = mode__input.checked;
-      if(!nonGame.includes(main.dataset.title) && currentMode === true){
-        startGame(currentChapter);
-      }
-      if(!nonGame.includes(main.dataset.title) && currentMode === false){
-        genCards(currentChapter);
-      }
+    if (!currentMode && !nonGame.includes(currentChapter)){
+      startGame(currentChapter);
+    } 
+    if (currentMode && !nonGame.includes(currentChapter)) {
+      startTrain(currentChapter);
     }
+    currentMode = currentMode ? false : true
   })
 
   document.body.appendChild(mode)
 }
 
-export { applyModeHandler, currentMode }
+function setPlayMode(){
+  setCurrentChapter();
+  currentMode = true;
+  const handle = document.querySelector('.mode__handle');
+  const back = document.querySelector('.mode__back');
+  const titles = document.querySelectorAll('.mode__name');
+  const train = titles[0];
+  const play = titles[1];
+  handle.classList.add('mode__handle_play');
+  back.classList.add('mode__back_play');
+  train.classList.add('mode__name_hidden');
+  play.classList.remove('mode__name_hidden');
+}
+
+export { applyModeHandler, currentMode, setPlayMode }

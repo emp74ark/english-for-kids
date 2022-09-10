@@ -1,10 +1,13 @@
 import { getWords } from './sources';
-import { successList, failList } from './game';
+import { successList, failList, startGame } from './game';
+import { setPlayMode } from './mode';
 
 class ScoreItem {
-  constructor(en, ru) {
+  constructor(en, ru, img, sound) {
     this.en = en,
     this.ru = ru,
+    this.img = img,
+    this.sound = sound,
     this.success = successList.get(this.en) === undefined ? 0 : successList.get(this.en),
     this.fail = failList.get(this.en) === undefined ? 0 : failList.get(this.en),
     this.score = Math.ceil(this.success / (this.success + this.fail) * 100);
@@ -21,7 +24,7 @@ async function genScoreList(field = 'en', direction = 'asc'){
   const data = [];
   for (const chapter of list){
     for (const word of chapter.words) {
-      data.push(new ScoreItem(word.en, word.ru));
+      data.push(new ScoreItem(word.en, word.ru, word.img, word.sound));
     }
   }
   
@@ -135,6 +138,14 @@ function addButtons(){
   button__reset.className = 'button__reset';
   button__reset.addEventListener('click', () => { resetScore() });
   buttons__wrapper.appendChild(button__reset);
+  const button__repeat = document.createElement('button');
+  button__repeat.textContent = 'Repeat'
+  button__repeat.className = 'button__repeat';
+  button__repeat.addEventListener('click', () => { 
+    startGame('Repeat');
+    setPlayMode();
+  });
+  buttons__wrapper.appendChild(button__repeat);
   return buttons__wrapper;
 }
 
@@ -221,4 +232,4 @@ async function genScoreTable(field, direction){
   main.appendChild(fragment);
 }
 
-export { genScoreTable }
+export { genScoreTable, genScoreList }

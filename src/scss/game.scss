@@ -28,11 +28,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  width: 30rem;
-  height: 30rem;
+  width: 50%;
+  height: 50%;
   position: fixed;
-  top: calc(50vh - 10rem);
-  left: calc(50vw - 15rem);
+  top: 25%;
+  left: 25%;
   background: $background-light;
   border-radius: 2rem;
   box-shadow: 0 0 1rem $shadow-dark;

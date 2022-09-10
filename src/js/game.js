@@ -1,5 +1,4 @@
-import { getWords } from './sources';
-import { applyChapters } from './main';
+import { applyChapters, startTrainData } from './main';
 
 const successList = !localStorage.success 
   ? new Map()
@@ -28,26 +27,18 @@ function updateScore(result, word){
 }
 
 async function startGame(chapter){
-  const words = await getWords();
-  const main = document.querySelector('main');
-  
-  let currentWords;
-  
   const fragment = new DocumentFragment();
+  const main = document.querySelector('main');
+  const words = await startTrainData(chapter);
   
-  for (const c of words){
-    if(c.chapter === chapter){
-      currentWords = c.words;
-      const title = document.createElement('h2');
-      title.textContent = c.chapter;
-      fragment.appendChild(title);
-    }
-  }
+  const title = document.createElement('h2');
+  title.textContent = chapter;
+  fragment.appendChild(title);
   
-  const initialList = currentWords.slice();
+  const initialList = words.slice();
   const passedList = [];
 
-  for (const word of currentWords){
+  for (const word of words){
     const card = document.createElement('div');
     card.className = 'card';
     const card__img = document.createElement('img');
@@ -148,6 +139,7 @@ async function startGame(chapter){
         card.classList.add('card_hidden');
       }
       button__game.classList.add('card_hidden');
+      title.classList.add('card_hidden');
       
       main.appendChild(greeting);
       updatedSavedData();
