@@ -119,7 +119,6 @@ async function genScoreList(field = 'en', direction = 'asc'){
     scoreFilterState.direction = 'dsc';
     data.sort((a,b) => a.score - b.score)
   }
-  
   return data;
 }
 

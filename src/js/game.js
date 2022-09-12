@@ -89,6 +89,7 @@ async function startGame(chapter){
     if (e.target.textContent === 'Start game'){
       button__game_start.classList.toggle('button__game_hidden');
       button__game_repeat.classList.toggle('button__game_hidden');
+      currentFailCounter = 0;
       randomSound();
     }
     if (e.target.textContent === 'Repeat'){
