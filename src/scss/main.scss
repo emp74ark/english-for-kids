@@ -27,6 +27,7 @@ h2 {
   padding: .5rem;
   transition: all .7s;
   transform-style: preserve-3d;
+  cursor: pointer;
   &:hover {
     box-shadow: .2rem .2rem 1rem $shadow-dark;
   }
