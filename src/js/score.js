@@ -28,97 +28,21 @@ async function genScoreList(field = 'en', direction = 'asc'){
     }
   }
   
-  if (field === 'en' && direction === 'asc'){
-    scoreFilterState.field = 'en';
-    scoreFilterState.direction = 'asc';
-    data.sort((a,b) => {
-      if(a.en < b.en){
-        return -1;
-      }
-      if(a.en > b.en){
-        return 1;
-      }
-      return 0;
+  scoreFilterState.field = field;
+  scoreFilterState.direction = direction;
+
+  if (direction === 'asc'){
+    data.sort((a, b) => {
+      return a[field] < b[field] ? -1 : a[field] > b[field] ? 1 : 0;
     })
   }
 
-  if (field === 'en' && direction === 'dsc'){
-    scoreFilterState.field = 'en';
-    scoreFilterState.direction = 'dsc';
-    data.sort((a,b) => {
-      if(a.en > b.en){
-        return -1;
-      }
-      if(a.en < b.en){
-        return 1;
-      }
-      return 0;
+  if (direction === 'dsc'){
+    data.sort((a, b) => {
+      return a[field] > b[field] ? -1 : a[field] < b[field] ? 1 : 0;
     })
   }
-
-  if (field === 'ru' && direction === 'asc'){
-    scoreFilterState.field = 'ru';
-    scoreFilterState.direction = 'asc'
-    data.sort((a,b) => {
-      if(a.ru < b.ru){
-        return -1;
-      }
-      if(a.ru > b.ru){
-        return 1;
-      }
-      return 0;
-    })
-  }
-
-  if (field === 'ru' && direction === 'dsc'){
-    scoreFilterState.field = 'ru';
-    scoreFilterState.direction = 'dsc'
-    data.sort((a,b) => {
-      if(a.ru > b.ru){
-        return -1;
-      }
-      if(a.ru < b.ru){
-        return 1;
-      }
-      return 0;
-    })
-  }
-
-  if (field === 'success' && direction === 'asc'){
-    scoreFilterState.field = 'success';
-    scoreFilterState.direction = 'asc';
-    data.sort((a,b) => b.success - a.success)
-  }
-
-  if (field === 'success' && direction === 'dsc'){
-    scoreFilterState.field = 'success';
-    scoreFilterState.direction = 'dsc';
-    data.sort((a,b) => a.success - b.success)
-  }
-
-  if (field === 'fail' && direction === 'asc'){
-    scoreFilterState.field = 'fail';
-    scoreFilterState.direction = 'asc';
-    data.sort((a,b) => b.fail - a.fail)
-  }
-
-  if (field === 'fail' && direction === 'dsc'){
-    scoreFilterState.field = 'fail';
-    scoreFilterState.direction = 'dsc';
-    data.sort((a,b) => a.fail - b.fail)
-  }
-
-  if (field === 'score' && direction === 'asc'){
-    scoreFilterState.field = 'score';
-    scoreFilterState.direction = 'asc';
-    data.sort((a,b) => b.score - a.score)
-  }
-
-  if (field === 'score' && direction === 'dsc'){
-    scoreFilterState.field = 'score';
-    scoreFilterState.direction = 'dsc';
-    data.sort((a,b) => a.score - b.score)
-  }
+  
   return data;
 }
 
@@ -157,50 +81,37 @@ async function genScoreTable(field, direction){
   table.className = 'score__table';
   
   const table__header = document.createElement('tr');
-  const table__columns = ['English', 'Russian', 'Success', 'Fail', 'Success score'];
+  const table__columns = [
+    {
+      name: 'English', 
+      id: 'en'
+    }, 
+    {
+      name: 'Russian', 
+      id: 'ru'
+    }, 
+    {
+      name: 'Success',
+      id: 'success'
+    }, 
+    {
+      name: 'Fail', 
+      id: 'fail'
+    }, 
+    {
+      name: 'Success score', 
+      id: 'score'
+    }
+  ];
   for (const cell__header of table__columns){
     const cell__data = document.createElement('th');
-    cell__data.textContent = cell__header;
+    cell__data.textContent = cell__header.name;
+    cell__data.dataset.id = cell__header.id;
     table__header.appendChild(cell__data);
   }
   table__header.addEventListener('click', (e) => {
-    switch(e.target.closest('th').textContent) {
-      case 'English':
-        if (scoreFilterState.field === 'en' && scoreFilterState.direction === 'dsc'){
-          genScoreTable('en', 'asc');
-        } else {
-          genScoreTable('en', 'dsc');
-        }
-        break;
-      case 'Russian':
-        if (scoreFilterState.field === 'ru' && scoreFilterState.direction === 'dsc'){
-          genScoreTable('ru', 'asc');
-        } else {
-          genScoreTable('ru', 'dsc');
-        }
-        break;
-      case 'Success':
-        if (scoreFilterState.field === 'success' && scoreFilterState.direction === 'dsc'){
-          genScoreTable('success', 'asc');
-        } else {
-          genScoreTable('success', 'dsc');
-        }
-        break;
-      case 'Fail':
-        if (scoreFilterState.field === 'fail' && scoreFilterState.direction === 'dsc'){
-          genScoreTable('fail', 'asc');
-        } else {
-          genScoreTable('fail', 'dsc');
-        }
-        break;
-      case 'Success score':
-        if (scoreFilterState.field === 'score' && scoreFilterState.direction === 'dsc'){
-          genScoreTable('score', 'asc');
-        } else {
-          genScoreTable('score', 'dsc');
-        }
-        break;
-    }
+    const direction = scoreFilterState.direction === 'asc' ? 'dsc' : 'asc';
+    genScoreTable(e.target.dataset.id, direction);
   })
   table.appendChild(table__header);
   

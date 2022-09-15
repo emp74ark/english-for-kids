@@ -18,12 +18,11 @@ function updatedSavedData(){
 
 function updateScore(result, word){
   const table = result === 'success' ? successList : failList;
+  let counter = 1;
   if (table.has(word)){
-    const counter = table.get(word) + 1;
-    table.set(word, counter)
-  } else {
-    table.set(word, 1)
+    counter = table.get(word) + 1
   }
+  table.set(word, counter)
 }
 
 async function startGame(chapter){
@@ -35,7 +34,7 @@ async function startGame(chapter){
   title.textContent = chapter;
   fragment.appendChild(title);
   
-  const initialList = words.slice();
+  const initialList = [...words];
   const passedList = [];
 
   for (const word of words){
@@ -85,6 +84,7 @@ async function startGame(chapter){
   button__game_repeat.className = 'button__game_active'
   button__game_repeat.classList.add('button__game_hidden');
   button__game.appendChild(button__game_repeat);
+  
   button__game.addEventListener('click', (e) => {
     if (e.target.textContent === 'Start game'){
       button__game_start.classList.toggle('button__game_hidden');
@@ -117,10 +117,12 @@ async function startGame(chapter){
       const greeting__close = document.createElement('span');
       greeting__close.className = 'greeting__close'
       greeting__close.innerHTML = '&times;';
+      
       greeting__close.addEventListener('click', () => {
         main.removeChild(greeting);
         applyChapters();
       })
+      
       greeting.appendChild(greeting__close);
       greeting.appendChild(greeting__img);
       greeting.appendChild(greeting__success);

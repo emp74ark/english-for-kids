@@ -13,7 +13,7 @@ function applyFooter(){
   footer.appendChild(footer__item);
   document.body.appendChild(footer);
 
-  footer.addEventListener('click', (e) => {
+  footer.addEventListener('click', () => {
     window.open('https://learn.epam.com/start')
   })
 }

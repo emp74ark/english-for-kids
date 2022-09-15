@@ -51,10 +51,8 @@ async function genNav(){
     switch (tag) {
       case 'Main page':
         applyChapters();
-        burgerToggle();
         break;
       case 'Score':
-        burgerToggle();
         genScoreTable('en', 'asc');
         break;
       default:
@@ -65,8 +63,8 @@ async function genNav(){
           startTrain(tag);
           setCurrentChapter(tag)
         }
-        burgerToggle();
-    }
+      }
+      burgerToggle();
   })
   
   fragment.appendChild(burger__wrapper);
