@@ -30,13 +30,17 @@
   justify-content: space-evenly;
   width: 50%;
   height: 50%;
+  min-height: 10rem;
   position: fixed;
   top: 25%;
   left: 25%;
   background: $background-light;
   border-radius: 2rem;
   box-shadow: 0 0 1rem $shadow-dark;
-  font-size: 2rem;
+  font-size: 1.6rem;
+  img {
+    height: 50%;
+  }
 }
 
 .greeting__close {

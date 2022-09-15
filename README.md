@@ -7,3 +7,9 @@
 ## Sources
 - Sounds: https://soundoftext.com/
 - Images: https://stock.adobe.com/
+## Self-check
+- Basic scope +50;
+- Advanced scope +80;
+- Hacker scope +30:
+    - statistic table page doesn't contain category names;
+    - how many times a card with a given word was clicked in training mode - not implemented;
