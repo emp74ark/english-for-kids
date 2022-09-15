@@ -107,8 +107,10 @@ async function startTrain(chapter) {
     button_rotate.className = 'button__rotate';
     card_ru.appendChild(button_rotate);
 
-    card_ru.addEventListener('mouseout', () => {
-      card.classList.toggle('card__rotate');
+    card_ru.addEventListener('mouseout', (e) => {
+      if (e.relatedTarget.parentNode.dataset.title){
+        card.classList.toggle('card__rotate');
+      }
     })
     
     card.appendChild(card_en)
