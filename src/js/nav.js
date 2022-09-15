@@ -28,11 +28,10 @@ async function genNav(){
     burgerToggle();
   })
   document.body.addEventListener('click', (e) => {
-    if (e.target.id !== 'burger'){
+    if (!e.target.className.includes('nav__list')){
       burgerClose();
     }
   })
-  
   const words = await getWords();
   const nav__list = document.createElement('ul');
   const nav__list_main = document.createElement('li');
